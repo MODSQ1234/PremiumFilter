@@ -1,40 +1,83 @@
+
+
 from pyrogram import Client, filters
+
 import datetime
+
 import time
+
 from database.users_chats_db import db
+
 from info import ADMINS
+
 from utils import broadcast_messages
+
 import asyncio
 
+        
+
 @Client.on_message(filters.command("broadcast") & filters.user(ADMINS) & filters.reply)
+
+# https://t.me/LazyDeveoper
+
 async def verupikkals(bot, message):
+
     users = await db.get_all_users()
+
     b_msg = message.reply_to_message
+
     sts = await message.reply_text(
-        text='Broadcasting your message to your bot users 😗 Support [tamilan_botsz]'
+
+        text='Broadcasting your messages...'
+
     )
+
     start_time = time.time()
+
     total_users = await db.total_users_count()
+
     done = 0
+
     blocked = 0
+
     deleted = 0
-    failed = 0
+
+    failed =0
+
+
+
     success = 0
 
     async for user in users:
+
         pti, sh = await broadcast_messages(int(user['id']), b_msg)
+
         if pti:
+
             success += 1
+
         elif pti == False:
+
             if sh == "Blocked":
-                blocked += 1
+
+                blocked+=1
+
             elif sh == "Deleted":
+
                 deleted += 1
+
             elif sh == "Error":
+
                 failed += 1
+
         done += 1
+
         await asyncio.sleep(2)
+
         if not done % 20:
-            await sts.edit(f"Bʀᴏᴀᴅᴄᴀsᴛɪɴɢ Nᴏᴡ:\n\nTᴏᴛᴀʟ Usᴇʀs ﹦ {total_users}\nCᴏᴍᴘʟᴇᴛᴇᴅ ﹦ {done} / {total_users}\nSᴜᴄᴄᴇss ﹦ {success}\nBʟᴏᴄᴋᴇᴅ ﹦ {blocked}\nDᴇʟᴇᴛᴇᴅ ﹦ {deleted}")    
+
+            await sts.edit(f"Lazy Broadcast is in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
+
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
-    await sts.edit(f"Bʀᴏᴀᴅᴄᴀsᴛ Cᴏᴍᴘʟᴇᴛᴇᴅ ﹦\nCᴏᴍᴘʟᴇᴛᴇᴅ Iɴ ﹦ {time_taken} Sᴇᴄᴏɴᴅs.\n\nTᴏᴛᴀʟ Usᴇʀs ﹦ {total_users}\nCᴏᴍᴘʟᴇᴛᴇᴅ {done} / {total_users}\nSᴜᴄᴄᴇss ﹦ {success}\nBʟᴏᴄᴋᴇᴅ ﹦ {blocked}\nDeleted: {deleted}")
+
+    await sts.edit(f"Lazy Broadcast is Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")
