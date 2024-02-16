@@ -116,8 +116,8 @@ async def next_page(bot, query):
         off_set = offset - 6
     if n_offset == 0:
         btn.append(
-            [InlineKeyboardButton("‹‹‹ Bᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
-             InlineKeyboardButton(f"📃 Pᴀɢᴇs {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
+            [InlineKeyboardButton("‹‹‹ חזור", callback_data=f"next_{req}_{key}_{off_set}"),
+             InlineKeyboardButton(f"📃 דפים {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
                                   callback_data="pages")]
         )
     elif off_set is None:
@@ -133,7 +133,7 @@ async def next_page(bot, query):
             ],
         )
     btn.insert(0, [
-        InlineKeyboardButton("😌 Cʜᴇᴄᴋ Bᴏᴛ PM 😌", url=f"https://t.me/{temp.U_NAME}")
+        InlineKeyboardButton("😌 תבדוקו בבוט הראשי 😌", url=f"https://t.me/{temp.U_NAME}")
     ])
     try:
         await query.edit_message_reply_markup(
@@ -186,7 +186,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     title = chat.title
                 except:
                     await query.message.edit_text("Tʜᴇʀᴇ ᴀʀᴇ ɴᴏ ᴀᴄᴛɪᴠᴇ ᴄᴏɴɴᴇᴄᴛɪᴏɴꜱ!! Cᴏɴɴᴇᴄᴛ ᴛᴏ ꜱᴏᴍᴇ ɢʀᴏᴜᴘꜱ ғɪʀꜱᴛ.", quote=True)
-                    return await query.answer(' ˆ°• Tᴀᴍɪʟᴀɴ BᴏᴛsZ •°ˆ ')
+                    return await query.answer(' ˆ°• בוט הסרטים הגדול בעולם •°ˆ ')
             else:
                 await query.message.edit_text(
                     "Iᴀᴍ Nᴏᴛ Cᴏɴɴᴇᴄᴛᴇᴅ Tᴏ Aɴʏ Gʀᴏᴜᴩ \nCʜᴇᴄᴋ /connections Oʀ Cᴏɴɴᴇᴄᴛ Tᴏ Aɴʏ Gʀᴏᴜᴩ",
@@ -199,7 +199,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             title = query.message.chat.title
 
         else:
-            return await query.answer(' ˆ°• Tᴀᴍɪʟᴀɴ BᴏᴛsZ •°ˆ ')
+            return await query.answer(' ˆ°•  בוט הסרטים הגדול בעולם •°ˆ ')
 
         st = await client.get_chat_member(grp_id, userid)
         if (st.status == enums.ChatMemberStatus.OWNER) or (str(userid) in ADMINS):
@@ -315,7 +315,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f"Sᴏᴍᴇ Eʀʀᴏʀ Oᴄᴄᴜʀᴇᴅ!!",
                 parse_mode=enums.ParseMode.MARKDOWN
             )
-        return await query.answer(' ˆ°• Tᴀᴍɪʟᴀɴ BᴏᴛsZ •°ˆ ')
+        return await query.answer(' ˆ°•  בוט הסרטים הגדול בעולם •°ˆ ')
     elif query.data == "backcb":
         await query.answer()
 
@@ -719,7 +719,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
-    await query.answer(' ˆ°• Tᴀᴍɪʟᴀɴ BᴏᴛsZ •°ˆ ')
+    await query.answer(' ˆ°•  בוט הסרטים הגדול בעולם •°ˆ ')
 
 
 async def auto_filter(client, msg, spoll=False):
@@ -733,10 +733,10 @@ async def auto_filter(client, msg, spoll=False):
             search = message.text
             files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files:
-                await client.send_message(file_req_channel,f"-🦋 #REQUESTED_FILE 🦋-\n\n📝Fɪʟᴇ Nᴀᴍᴇ :{search}\n\nRᴇǫᴜᴇsᴛᴇᴅ Bʏ: {message.from_user.first_name}\n\n Usᴇʀ Iᴅ :{message.from_user.id}\n\n🗃Cᴏᴅᴇᴅᴇᴅ Bʏ  @Tamilan_BotsZ",
+                await client.send_message(file_req_channel,f"-🦋 #בקשת סרטים/סדרות 🦋-\n\n📝שם הסרט/סדרה :{search}\n\nRᴇǫᴜᴇsᴛᴇᴅ Bʏ: {message.from_user.first_name}\n\n Usᴇʀ Iᴅ :{message.from_user.id}\n\n🗃Cᴏᴅᴇᴅᴇᴅ Bʏ  @Tamilan_BotsZ",
                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔺 Fɪʟᴇ Uᴩʟᴏᴀᴅᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ 🔺", callback_data="close_data")]]))
-                l = await message.reply_text(text=f"△ Hᴇʏ Fʀɪᴇɴᴅ {message.from_user.first_name} 😎,\n\nʏᴏᴜʀ ʀᴇQᴜᴇꜱᴛ ʜᴀꜱ ʙᴇᴇɴ ꜱᴇɴᴛ ᴛᴏ ᴏᴜʀ ᴀᴅᴍɪɴ'ꜱ ᴅᴀꜱʜʙᴏᴀʀᴅ !\n\nᴘʟᴇᴀꜱᴇ ᴋᴇᴇᴘ ꜱᴏᴍᴇ ᴘᴀᴛɪᴇɴᴄᴇ !\nᴛʜᴇʏ ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴀꜱ ꜱᴏᴏɴ ᴀꜱ ᴘᴏꜱꜱɪʙʟᴇ.\n\n➟ 📝Cᴏɴᴛᴇɴᴛ Nᴀᴍᴇ : {search}\n\n➟ 👮 Rᴇǫᴜᴇsᴛᴇᴅ Bʏ Yᴏᴜ : {message.from_user.first_name}\n\n༺ @TamilanBotsZSupport༻\n\n🦋・‥☆Sᴜᴩᴩᴏʀᴛ Oᴜʀ Cʜᴀɴɴᴇʟ ☆‥・🦋\n╰┈➤・☆ @SharathItsIsMe ☆",
-                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  Aᴅᴅ Mᴇ Tᴏ Uʀ Gʀᴏᴜᴩ  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪ Tᴀᴍɪʟᴀɴ Bᴏᴛs ✪", url="https://t.me/Tamilan_BotsZ"), InlineKeyboardButton("✪ Sᴜᴩᴩᴏʀᴛ Gʀᴏᴜᴩ ✪", url="https://t.me/TamilanBotsZ_Support"), InlineKeyboardButton("✪ Rᴇᴩᴏ ✪", url="https://Github.com/TamilanBotsZ/PremiumFilter")],[InlineKeyboardButton("╚»♥️Dᴇʟᴇᴛᴇ Tʜɪs Mᴇssᴀɢᴇ ♥️«╝", callback_data="close_data")]]))
+                l = await message.reply_text(text=f"△ שלום חברים {message.from_user.first_name} 😎,\n\nהבקשה שלך נשלחה למנהל הבוט !\n\nᴘʟᴇᴀꜱᴇ ᴋᴇᴇᴘ ꜱᴏᴍᴇ ᴘᴀᴛɪᴇɴᴄᴇ !\nנעלה את הסרט שביקשת הכי מהר שאנחנו יכולים.\n\n➟ 📝Cᴏɴᴛᴇɴᴛ Nᴀᴍᴇ : {search}\n\n➟ 👮 Rᴇǫᴜᴇsᴛᴇᴅ Bʏ Yᴏᴜ : {message.from_user.first_name}\n\n༺ @TamilanBotsZSupport༻\n\n🦋・‥☆Sᴜᴩᴩᴏʀᴛ Oᴜʀ Cʜᴀɴɴᴇʟ ☆‥・🦋\n╰┈➤・☆ @SharathItsIsMe ☆",
+                                                                                                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  תוסיף את בהוט לקבוצה שיעזור לך לנהל את הקבוצה  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪  בוט הסרטים הגדול בעולם ✪", url="https://t.me/Movietext83"), InlineKeyboardButton("✪ קבוצת תמיכה ✪", url="https://t.me/Movietext83"), InlineKeyboardButton("✪ הצטרפו לעדכונים ✪", url="https://t.me/Movietext83")],[InlineKeyboardButton("╚»♥️לסגור הודעה ♥️«╝", callback_data="close_data")]]))
                 await asyncio.sleep(12)
                 await l.delete()
                 if settings["spell_check"]:
@@ -787,7 +787,7 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text="🗓 1/1", callback_data="pages")]
         )
     btn.insert(0, [
-        InlineKeyboardButton("😌 Cʜᴇᴄᴋ Bᴏᴛ PM 😌", url=f"https://t.me/{temp.U_NAME}")
+        InlineKeyboardButton("😌 בדוק את הבוט הראשי 😌", url=f"https://t.me/{temp.U_NAME}")
     ])
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
@@ -824,7 +824,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b>😙Rᴇǫᴜᴇsᴛᴇᴅ Bʏ : {message.from_user.mention} \n\n😊 Yᴏᴜʀ Qᴜᴇʀʏ : {search} \n\n📂Tᴏᴛᴀʟ Fɪʟᴇs Fᴏᴜɴᴅᴇᴅ : {str(total_results)}</b>"
+        cap = f"<b>😙Rᴇǫᴜᴇsᴛᴇᴅ Bʏ : {message.from_user.mention} \n\n😊 החיפוש שלך : {search} \n\n📂הקבצים שנמצאו : {str(total_results)}</b>"
     if imdb and imdb.get('poster'):
         try:
             hehe =  await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
@@ -862,7 +862,7 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply("לא הצלחתי למצוא את הסרט/סדרה שאתה רוצה.")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -891,7 +891,7 @@ async def advantage_spell_chok(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
     if not movielist:
-        k = await msg.reply("I couldn't find anything related to that. Check your spelling")
+        k = await msg.reply("לא הצלחתי למצוא את הסרט/סדרה אנא תכתוב את השם של הסרט/סדרה במדויוק")
         await asyncio.sleep(8)
         await k.delete()
         return
