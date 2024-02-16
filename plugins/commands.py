@@ -43,21 +43,9 @@ async def start(client, message):
     if len(message.command) != 2:
         buttons = [[
 
-            InlineKeyboardButton('➕ כפתור סתם בשביל היופי ➕', url=f"https://t.me/{temp.U_NAME}?startgroup=true")
-
-            ],[
-
             InlineKeyboardButton('💥 עדכונים 💥', url='https://t.me/Movietext83'),
 
             InlineKeyboardButton('🔎 ערוץ סרטים איכותי 🔍', url='https://t.me/Movietext83')
-
-            ],[
-
-            InlineKeyboardButton('😅 לקנייה בוט כזה לחץ כאן 😊', callback_data='sources')
-
-            ],[
-
-            InlineKeyboardButton('💌 עדכונים ועלינו לחץ כאן 💌', callback_data= 'about')
 
             ],[
 
