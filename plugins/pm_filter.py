@@ -735,7 +735,7 @@ async def auto_filter(client, msg, spoll=False):
             if not files:
                 await client.send_message(file_req_channel,f"-🦋 #בקשת סרטים/סדרות 🦋-\n\n📝שם הסרט/סדרה :{search}\n\nRᴇǫᴜᴇsᴛᴇᴅ Bʏ: {message.from_user.first_name}\n\n Usᴇʀ Iᴅ :{message.from_user.id}\n\n🗃Cᴏᴅᴇᴅᴇᴅ Bʏ  @Tamilan_BotsZ",
                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔺 Fɪʟᴇ Uᴩʟᴏᴀᴅᴇᴅ Sᴜᴄᴄᴇssғᴜʟʟʏ 🔺", callback_data="close_data")]]))
-                l = await message.reply_text(text=f"△ שלום חברים {message.from_user.first_name} 😎,\n\nהבקשה שלך נשלחה למנהל הבוט !\n\nᴘʟᴇᴀꜱᴇ ᴋᴇᴇᴘ ꜱᴏᴍᴇ ᴘᴀᴛɪᴇɴᴄᴇ !\nנעלה את הסרט שביקשת הכי מהר שאנחנו יכולים.\n\n➟ 📝Cᴏɴᴛᴇɴᴛ Nᴀᴍᴇ : {search}\n\n➟ 👮 Rᴇǫᴜᴇsᴛᴇᴅ Bʏ Yᴏᴜ : {message.from_user.first_name}\n\n༺ @TamilanBotsZSupport༻\n\n🦋・‥☆Sᴜᴩᴩᴏʀᴛ Oᴜʀ Cʜᴀɴɴᴇʟ ☆‥・🦋\n╰┈➤・☆ @SharathItsIsMe ☆",
+                l = await message.reply_text(text=f"△ שלום חברים {message.from_user.first_name} 😎,\n\nהבקשה שלך נשלחה למנהל הבוט !\n\nבבקשה תהיה סבלני !\nנעלה את הסרט שביקשת הכי מהר שאנחנו יכולים.\n\n➟ 📝שם הסרט : {search}\n\n➟ 👮 בקשה נשלחה : {message.from_user.first_name}\n\n༺ @Movietext83༻\n\n🦋・‥☆,תמכו בערוץ שלנו ☆‥・🦋\n╰┈➤・☆ @Movietext83 ☆",
                                                                                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("━ • │▌║  תוסיף את בהוט לקבוצה שיעזור לך לנהל את הקבוצה  ║▌│ • ━", url=f'http://t.me/{temp.U_NAME}?startgroup=true')],[InlineKeyboardButton("✪  בוט הסרטים הגדול בעולם ✪", url="https://t.me/Movietext83"), InlineKeyboardButton("✪ קבוצת תמיכה ✪", url="https://t.me/Movietext83"), InlineKeyboardButton("✪ הצטרפו לעדכונים ✪", url="https://t.me/Movietext83")],[InlineKeyboardButton("╚»♥️לסגור הודעה ♥️«╝", callback_data="close_data")]]))
                 await asyncio.sleep(12)
                 await l.delete()
@@ -824,7 +824,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b>😙Rᴇǫᴜᴇsᴛᴇᴅ Bʏ : {message.from_user.mention} \n\n😊 החיפוש שלך : {search} \n\n📂הקבצים שנמצאו : {str(total_results)}</b>"
+        cap = f"<b>😙בקשה מאת : {message.from_user.mention} \n\n😊 החיפוש שלך : {search} \n\n📂הקבצים שנמצאו : {str(total_results)}</b>"
     if imdb and imdb.get('poster'):
         try:
             hehe =  await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
@@ -903,7 +903,7 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
+    await msg.reply("לא מצאתי מה שביקשת\זה אחד אולי מאלה?",
                     reply_markup=InlineKeyboardMarkup(btn))
 
 
