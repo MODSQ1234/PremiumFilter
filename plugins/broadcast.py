@@ -1,41 +1,30 @@
 from pyrogram import Client, filters
-import datetime
-import time
-from database import users_chats_db # assume this imports db
-from info import ADMINS 
+import asyncio
 
-@Client.on_message(filters.command("broadcast") & filters.user(ADMINS) & filters.reply)
+from info import ADMINS
+from utils import broadcast_messages
+
+@Client.on_message(filters.command("broadcast") & filters.user(ADMINS) & filters.reply)  
 async def broadcast(client, message):
-    users = await db.get_all_users()
-    b_msg = message.reply_to_message  
-    sts = await message.reply_text("Broadcasting...")
+    users = await db.get_all_users()  
+    b_msg = message.reply_to_message
     
-    start_time = time.time() 
-    total_users = await db.total_users_count()  
-    done = 0
-    blocked = 0 
-    deleted = 0
+    status = await message.reply("Starting broadcast...")  
+    start_time = time.time()
+    
     failed = 0
-    success = 0
+    sent = 0
     
     for user in users:
-        pti, sh = await broadcast_messages(int(user['id']), b_msg)
-        if pti:
-            success += 1
-        elif pti == False:
-            if sh == "Blocked":
-                blocked+=1
-            elif sh == "Deleted":
-                deleted += 1
-            elif sh == "Error":
-                failed += 1
-        
-        done += 1
-        await asyncio.sleep(2)
-        
-        if not done % 20:
-            await sts.edit(f"Broadcast in progress: {done} / {total_users} users")
+        try:
+            await broadcast_messages(int(user['id']), b_msg) 
+            sent += 1
+            await asyncio.sleep(2)  
+        except FloodWait as e:
+            await asyncio.sleep(e.x)
+        except Exception:
+            failed += 1
+            print(f"Failed for {user['id']}")
             
-    time_taken = datetime.timedelta(seconds=int(time.time()-start_time)) 
-    
-    await sts.edit(f"Broadcast Completed in {time_taken} seconds.")
+    time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
+    await status.edit_text(f"Broadcast completed:\nSent to {sent} users\nFailed for {failed} users\nTook {time_taken} seconds")
