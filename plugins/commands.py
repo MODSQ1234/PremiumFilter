@@ -245,13 +245,14 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
-    await client.send_cached_media(
+    a = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
         reply_markup=InlineKeyboardMarkup( [ [ InlineKeyboardButton('🚸 הסרט נמחק עוד 10 דק אנא שמורו אותו בהודעות שמורות', callback_data='close_data') ] ] ),
-        protect_content=True if pre == 'filep' else False,
-        )
+        protect_content=True if pre == 'filep' else False,)
+    await asyncio.sleep(600)
+    await message.delete(a)
                     
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
@@ -489,40 +490,4 @@ async def save_template(client, message):
     sts = await message.reply("ᴄʜᴇᴄᴋɪɴɢ ᴛᴇᴍᴘʟᴀᴛᴇ")
     userid = message.from_user.id if message.from_user else None
     if not userid:
-        return await message.reply(f"Yᴏᴜ ᴀʀᴇ ᴀɴᴏɴʏᴍᴏᴜꜱ ᴀᴅᴍɪɴ. Uꜱᴇ /connect {message.chat.id} in PM")
-    chat_type = message.chat.type
-
-    if chat_type == enums.ChatType.PRIVATE:
-        grpid = await active_connection(str(userid))
-        if grpid is not None:
-            grp_id = grpid
-            try:
-                chat = await client.get_chat(grpid)
-                title = chat.title
-            except:
-                await message.reply_text("Mᴀᴋᴇ ꜱᴜʀᴇ I'ᴍ ᴘʀᴇꜱᴇɴᴛ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ!!", quote=True)
-                return
-        else:
-            await message.reply_text("I'ᴍ ɴᴏᴛ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴛᴏ ᴀɴʏ ɢʀᴏᴜᴘꜱ!", quote=True)
-            return
-
-    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        grp_id = message.chat.id
-        title = message.chat.title
-
-    else:
-        return
-
-    st = await client.get_chat_member(grp_id, userid)
-    if (
-            st.status != enums.ChatMemberStatus.ADMINISTRATOR
-            and st.status != enums.ChatMemberStatus.OWNER
-            and str(userid) not in ADMINS
-    ):
-        return
-
-    if len(message.command) < 2:
-        return await sts.edit("No Input!!")
-    template = message.text.split(" ", 1)[1]
-    await save_group_settings(grp_id, 'template', template)
-    await sts.edit(f"Sᴜᴄᴄᴇꜱꜱғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ᴛᴇᴍᴘʟᴀᴛᴇ ғᴏʀ {title} to\n\n{template}")
+        return await message
