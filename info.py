@@ -21,7 +21,7 @@ USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 PICS = (environ.get('PICS', 'https://graph.org/file/6724dff83a79dc79a7641.jpg')).split()
 
 # Admins, Channels & Users
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1098027220').split()]
 CHANNELS = -1001625446236
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
@@ -31,8 +31,8 @@ AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_chan
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 # MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Mods123412341234:Mods123412341234@cluster0.jk99ldq.mongodb.net/")
-DATABASE_NAME = environ.get('DATABASE_NAME', "Mods123412341234")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://thebord38:thebord38@cluster0.ijhltav.mongodb.net/")
+DATABASE_NAME = environ.get('DATABASE_NAME', "thebord38")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Others
